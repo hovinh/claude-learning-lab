@@ -1,0 +1,26 @@
+# Virtual environment
+.venv/
+
+# Setuptools / pip metadata
+*.egg-info/
+dist/
+build/
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Pytest
+.pytest_cache/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Runtime log produced by api-monitor
+*.log
+
+# Claude Code local settings
+.claude/settings.local.json

@@ -1,0 +1,40 @@
+# API Monitor configuration
+# Sensitive credentials (smtp username/password) can be overridden via
+# environment variables: MONITOR_SMTP_USERNAME / MONITOR_SMTP_PASSWORD
+
+endpoints:
+  - name: "httpbin-get"
+    url: "https://httpbin.org/get"
+    method: GET
+    expected_status: 200
+    timeout: 10
+    interval: 30
+
+  - name: "httpbin-status-500"
+    url: "https://httpbin.org/status/500"
+    method: GET
+    expected_status: 200   # intentionally wrong — triggers alert
+    timeout: 10
+    interval: 60
+
+thresholds:
+  response_time_ms: 3000   # alert when avg response time exceeds 3 s
+  error_rate: 0.10         # alert when error rate exceeds 10 %
+  consecutive_failures: 3  # alert after 3 consecutive failures
+
+alerts:
+  email:
+    enabled: false          # set to true and fill in credentials to enable
+    smtp_host: "smtp.gmail.com"
+    smtp_port: 587
+    use_tls: true
+    username: ""            # or set MONITOR_SMTP_USERNAME env var
+    password: ""            # or set MONITOR_SMTP_PASSWORD env var
+    from_address: "monitor@example.com"
+    to_addresses:
+      - "ops-team@example.com"
+
+logging:
+  level: INFO
+  file: "api_monitor.log"
+  format: "%(asctime)s [%(levelname)s] %(name)s — %(message)s"

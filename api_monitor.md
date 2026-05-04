@@ -1,5 +1,1 @@
-# claude-learning-lab
-
-## api-monitor
-
 Create a Python CLI tool using Click and Requests to monitor a REST API endpoint for uptime, response time, and error rates. Include Logging, config file YAML, and alerts via email (use smtplib). Structure as a package with tests (pytest). Assume 200K context; reference best practices from FastAPI docs. Output as Artifact with editable code.
